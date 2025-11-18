@@ -1,0 +1,59 @@
+---
+import logo from "../../assets/BS.png";
+import Image from "astro/components/Image.astro";
+---
+
+<style>
+  nav {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dotted rgb(64, 121, 157);
+    border-radius: 50px;
+  }
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+  }
+  li {
+    color: white;
+    cursor: pointer;
+    
+  }
+  a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: rgb(64, 121, 157);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  .logo {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+  }
+</style>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+
+    <Image class="logo" src={logo} alt="" />
+    <li><a href="#">Roadmaps</a></li>
+    <li><a href="#">Community</a></li>
+    <li><a href="#">FAQs</a></li>
+
+    <button>Mint</button>
+  </ul>
+</nav>
