@@ -1,0 +1,203 @@
+---
+// src/components/About.astro
+import Image from "astro/components/Image.astro";
+import aizen from "../assets/aizen.png";
+import { Icon } from "astro-icon/components";
+---
+
+<style>
+  .about {
+    background: #0a171e;
+    padding: 140px 40px 180px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Top intro text */
+  .intro {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .intro h2 {
+    font-size: 1.1rem;
+    color: #7fecff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+  }
+
+  .intro p {
+    font-size: 1.25rem;
+    color: #b0e0ff;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .view-btn {
+    margin-top: 30px;
+    padding: 12px 32px;
+    background: transparent;
+    border: 2px solid #7fecff;
+    color: #7fecff;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+  }
+
+  .view-btn:hover {
+    background: #7fecff;
+    color: #0f2027;
+    box-shadow: 0 0 30px rgba(127, 236, 255, 0.6);
+    transform: translateY(-3px);
+  }
+
+  /* Main content grid */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .image-wrapper {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  }
+
+  .image-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(127, 236, 255, 0.2), transparent 50%);
+    z-index: 1;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .image-wrapper:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Text content */
+  .text-content h1 {
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    font-weight: 900;
+    background: linear-gradient(90deg, #e0f2fe, #7fecff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 32px 0;
+    line-height: 0.9;
+  }
+
+  .text-content p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #b0e0ff;
+    margin-bottom: 24px;
+  }
+
+  .text-content p:last-of-type {
+    margin-bottom: 40px;
+  }
+
+  .discord-btn {
+    padding: 16px 40px;
+    background: linear-gradient(135deg, #7fecff, #00c3ff);
+    color: #0f2027;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 0 30px rgba(127, 236, 255, 0.7);
+    transition: all 0.4s ease;
+  }
+
+  .discord-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 50px rgba(127, 236, 255, 0.9);
+  }
+
+  /* Subtle background glow */
+  .bg-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(127, 236, 255, 0.15), transparent 70%);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(100px);
+    z-index: 0;
+  }
+</style>
+
+<section class="about">
+  <div class="bg-glow"></div>
+
+  <!-- Intro -->
+  <div class="intro">
+    <h2>Welcome to Bored Shinigamiz</h2>
+    <p>
+      Join this ultra-exclusive NFT project featuring not only authentic anime-inspired art,
+      but unmatched utility on Solana. It will be called <strong>Bored Shinigamiz</strong>.
+    </p>
+    <button class="view-btn">
+      View All Collection
+      <Icon name="mdi:grid" width="20" />
+    </button>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="grid">
+    
+    <div class="image-wrapper">
+      <Image src={aizen} alt="Bored Shinigamiz - Aizen" loading="eager" />
+    </div>
+
+    <!-- Right: Text + Button -->
+    <div class="text-content">
+      <h1>WHAT IS BORED SHINIGAMIZ?</h1>
+      <p>
+        Bored Shinigamiz is the first collection of 11,111 unique 3D anime-inspired NFTs
+        living on the Solana blockchain. Each Shinigami is hand-crafted with over 250+ traits.
+        We want to build the strongest community and project around anime NFTs.
+      </p>
+      <p>
+        The main goal is to give a new opportunity to anime fans worldwide. We will make sure
+        our investment and second drop are more successful than the first one, to achieve all
+        of our goals. We will also be constantly improving to give you the best designs and
+        value possible.
+      </p>
+      <button class="discord-btn">
+        <Icon name="mdi:discord" width="28" />
+        Join Our Discord
+      </button>
+    </div>
+  </div>
+</section>

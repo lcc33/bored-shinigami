@@ -1,66 +1,169 @@
 ---
-import Navbar from "../components/ui/Navbar.astro";
+import Navbar from "./ui/Navbar.astro";
+import Image from "astro/components/Image.astro";
 import aizen from "../assets/aizen.png";
 import yama from "../assets/yama.png";
 import kenpachi from "../assets/kenpachi.png";
 import shunsui from "../assets/shunsui.png";
 import old from "../assets/old.png";
-import Image from "astro/components/Image.astro";
-import { FaX, FaDiscord, FaInstagram } from "react-icons/fa6";
+
+import { Instagram, Twitter } from "@lucide/astro";
+const discord  ="https://img.icons8.com/?size=100&id=61604&format=png&color=000000";
 ---
 
 <style>
-  main {
-    width: 100%;
-    height: 100vh;
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(
+      to bottom,
+      #0f2027 0%,
+      #112e3a 40%,
+      #0c1a22 100%
+    );
+    color: white;
     display: flex;
     flex-direction: column;
-   
+    align-items: center;
+    position: relative;
+    overflow: hidden;
   }
-  .mini-nav {
+
+  .top-socials {
+    position: absolute;
+    top: 20px;
+    right: 40px;
     display: flex;
-    justify-content: flex-end;
-    margin: 20px;
-    padding: 10px;
-    
+    gap: 16px;
+    z-index: 20;
   }
-  ul {
-    list-style: none;
+
+  .top-socials a {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+  }
+
+  .top-socials a:hover {
+    background: #7fecff;
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(127, 236, 255, 0.6);
+  }
+
+  .content {
+    text-align: center;
+    margin-top: 120px;
+    z-index: 10;
+  }
+
+  h1 {
+    font-size: clamp(1rem, 10vw, 9rem);
+    font-weight: 900;
+    background: linear-gradient(90deg, #e0f2fe, #7fecff, #33d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 4px;
+    margin: 0;
+    text-shadow: 0 0 40px rgba(127, 236, 255, 0.4);
+  }
+
+  .subtitle {
+    font-size: 1.4rem;
+    max-width: 720px;
+    margin: 10px auto 40px;
+    color: #b0e0ff;
+    line-height: 1.6;
+  }
+
+  .mint-btn {
+    padding: 16px 48px;
+    background: linear-gradient(135deg, #7fecff, #00c3ff);
+    color: #0f2027;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(127, 236, 255, 0.7);
+    transition: all 0.3s ease;
+  }
+
+  .mint-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 50px rgba(127, 236, 255, 0.9);
+    background: transparent;
+    color: white;
+  }
+
+  .characters {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     gap: 20px;
-    align-items: center;
-    justify-content: flex-end;
-    text-align: right;
+    padding: 0 40px;
+    z-index: 5;
   }
-  li {
-    color: black;
-    background-color: white;
-    cursor: pointer;
-    padding: 0.3rem;
-    border-radius: 50%;
+
+  .characters img {
+    height: 420px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8));
+    transition: transform 0.4s ease;
   }
+
+  .characters img:hover {
+    transform: translateY(-20px) scale(1.05);
+  }
+
+  .glow-ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(to top, rgba(127, 236, 255, 0.25), transparent);
+    filter: blur(80px);
+    z-index: 1;
+  }import Navbar from "./ui/Navbar.astro";
 </style>
 
-<main>
-  <section class="mini-nav">
-    <ul>
-      <li><FaX size={28} /></li>
-      <li><FaDiscord size={28} /></li>
-      <li><FaInstagram size={28} /></li>
-    </ul>
-  </section>
-  <Navbar />
-  <section>
-    <h1>Bored Shinigamiz</h1>
-    <p>The first ever anime inspired NFT collection on Solana.</p>
-    <button>Mint Now</button>
-  </section>
+<section class="hero">
+  <div class="top-socials">
+    <a href="#" aria-label="Twitter"><Twitter width="38" /></a>
+    <a href="#" aria-label="Menu">
+      <img width="38" 
+      src={discord}/></a>
+    <a href="#" aria-label="Instagram"
+      ><Instagram width="38" /></a
+    >
+  </div>
 
-  <!-- <section>
-    <Image src={aizen} alt="" />
-    <Image src={yama} alt="" />
-    <Image src={kenpachi} alt="" />
-    <Image src={shunsui} alt="" />
-    <Image src={old} alt="" />
-  </section> -->
-</main>
+  <Navbar />
+
+  <div class="content">
+    <h1>Bored Shinigamiz</h1>
+    <p class="subtitle">
+      Bored Shinigamiz is your ticket into the largest and fastest growing
+      anime-inspired NFT Project on Solana.
+    </p>
+    <button class="mint-btn">Mint is Live</button>
+  </div>
+
+  <div class="characters">
+    <Image src={old} alt="Shinigami 1" loading="eager" />
+    <Image src={kenpachi} alt="Shinigami 2" loading="eager" />
+    <Image src={aizen} alt="Shinigami 3" loading="eager" />
+    <Image src={yama} alt="Shinigami 4" loading="eager" />
+    <Image src={shunsui} alt="Shinigami 5" loading="eager" />
+  </div>
+
+  <div class="glow-ground"></div>
+</section>

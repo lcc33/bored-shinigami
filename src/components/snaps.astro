@@ -1,0 +1,138 @@
+---
+// src/components/ShowcaseBanner.astro
+import Image from "astro/components/Image.astro";
+
+import aizen from "../assets/aizen.png";
+import yama from "../assets/yama.png";
+import kenpachi from "../assets/kenpachi.png";
+import shunsui from "../assets/shunsui.png";
+---
+
+<section class="showcase">
+  <!-- Floating characters with irregular blob masks -->
+  <div class="characters">
+    <div class="blob blob-1">
+      <Image src={aizen}     alt="Shinigami #1" loading="eager" />
+    </div>
+    <div class="blob blob-2">
+      <Image src={kenpachi}  alt="Shinigami #2" loading="eager" />
+    </div>
+    <div class="blob blob-3">
+      <Image src={yama}      alt="Shinigami #3" loading="eager" />
+    </div>
+    <div class="blob blob-4">
+      <Image src={shunsui}   alt="Shinigami #4" loading="eager" />
+    </div>
+  </div>
+
+  <!-- Title + jagged mountain silhouette -->
+  <div class="title-wrapper">
+    <h1>BORED SHINIGAMIZ</h1>
+    <svg class="mountains" viewBox="0 0 1920 300" preserveAspectRatio="none">
+      <path d="M0,300 L0,150 L150,200 L300,100 L450,250 L600,50 L750,180 L900,120 L1050,220 L1200,80 L1350,200 L1500,100 L1650,250 L1800,130 L1920,180 L1920,300 Z" fill="#0f2027"/>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .showcase {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #0a171e 0%, #0f2027 50%, #112e3a 100%);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Floating characters */
+  .characters {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding-top: 100px;
+    flex-wrap: wrap;
+    perspective: 2000px;
+  }
+
+  .blob {
+    width: 320px;
+    height: 420px;
+    overflow: hidden;
+    border-radius: 62% 38% 55% 45% / 50% 50% 50% 50%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    transition: all 0.6s ease;
+    position: relative;
+  }
+
+  /* Unique blob shapes */
+  .blob-1 { border-radius: 58% 42% 65% 35% / 45% 55% 45% 55%; }
+  .blob-2 { border-radius: 45% 55% 50% 50% / 60% 40% 60% 40%; }
+  .blob-3 { border-radius: 70% 30% 50% 50% / 50% 50% 50% 50%; }
+  .blob-4 { border-radius: 40% 60% 55% 45% / 65% 35% 65% 35%; }
+
+  .blob:hover {
+    transform: translateY(-30px) rotateY(10deg);
+    box-shadow: 0 40px 100px rgba(127, 236, 255, 0.3);
+  }
+
+  .blob img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .blob:hover img {
+    transform: scale(1.1);
+  }
+
+  /* Title + mountain silhouette */
+  .title-wrapper {
+    position: relative;
+    text-align: center;
+    margin-bottom: -10px;
+  }
+
+  h1 {
+    font-size: clamp(5rem, 15vw, 12rem);
+    font-weight: 900;
+    letter-spacing: 8px;
+    background: linear-gradient(90deg, #e0f2fe, #7fecff, #33d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 20px 40px rgba(127, 236, 255, 0.4);
+    position: relative;
+    z-index: 2;
+  }
+
+  .mountains {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    z-index: 1;
+  }
+
+  .mountains path {
+    fill: #0f2027;
+    filter: drop-shadow(0 -10px 20px rgba(0, 0, 0, 0.8));
+  }
+
+  /* Subtle glow under characters */
+  .showcase::before {
+    content: "";
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    width: 1000px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(127, 236, 255, 0.15), transparent 70%);
+    transform: translateX(-50%);
+    filter: blur(120px);
+    z-index: 0;
+  }
+</style>

@@ -5,55 +5,129 @@ import Image from "astro/components/Image.astro";
 
 <style>
   nav {
+    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+   padding: 2px 20px;
+    border-radius: 60px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    max-width: 1400px;
+    margin-top: 10px;
     
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px dotted rgb(64, 121, 157);
-    border-radius: 50px;
   }
+
   ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
-    gap: 30px;
     align-items: center;
     justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
   }
+
   li {
-    color: white;
-    cursor: pointer;
-    
+    position: relative;
   }
+
   a {
+    color: #e0f2fe;
     text-decoration: none;
-    color: white;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
   }
-  button {
-    padding: 10px 20px;
-    background-color: rgb(64, 121, 157);
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
+
+  a:hover {
+    color: #7fecff;
+    text-shadow: 0 0 10px rgba(127, 236, 255, 0.6);
   }
+
+  a.active {
+    color: #7fecff;
+    text-shadow: 0 0 15px rgba(127, 236, 255, 0.8);
+  }
+
+  /* Underline effect on hover */
+  li::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -8px;
+    left: 50%;
+    background: #7fecff;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  li:hover::after {
+    width: 100%;
+  }
+
   .logo {
-    height: 120px;
-    width: 120px;
+    height: 90px;
+    width: 90px;
     border-radius: 50%;
+    border: 4px solid #7fecff;
+    box-shadow: 0 0 20px rgba(127, 236, 255, 0.5);
+    transition: transform 0.4s ease;
+  }
+
+  .logo:hover {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .mint-btn {
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #7fecff, #00c3ff);
+    color: #0f2027;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(127, 236, 255, 0.7);
+    transition: all 0.3s ease;
+  }
+
+  .mint-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(127, 236, 255, 0.9);
+    background: linear-gradient(135deg, #a0f4ff, #33d1ff);
+  }
+
+  .socials {
+    display: flex;
+    gap: 15px;
+  }
+
+  .socials a {
+    color: #b0e0ff;
+    font-size: 1.4rem;
+    transition: all 0.3s;
+  }
+
+  .socials a:hover {
+    color: #7fecff;
+    transform: scale(1.2);
   }
 </style>
+
 <nav>
   <ul>
     <li><a href="/">Home</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/contact">Contact</a></li>
+    <li><a href="/what-is-bored-bunny">What is Bored Bunny</a></li>
+    <li><a href="/benefits">Benefits & Utilities</a></li>
 
-    <Image class="logo" src={logo} alt="" />
-    <li><a href="#">Roadmaps</a></li>
-    <li><a href="#">Community</a></li>
-    <li><a href="#">FAQs</a></li>
+    <Image class="logo" src={logo} alt="Bored Bunny Logo" />
 
-    <button>Mint</button>
+    <li><a href="/roadmap">Roadmap</a></li>
+    <li><a href="/community">Community</a></li>
+    <li><a href="/faqs">FAQ's</a></li>
+
+    <button class="mint-btn">Mint is Live</button>
   </ul>
 </nav>
