@@ -1,138 +1,67 @@
 ---
-// src/components/ShowcaseBanner.astro
-import Image from "astro/components/Image.astro";
-
+import { Image } from "astro:assets";
 import aizen from "../assets/aizen.png";
 import yama from "../assets/yama.png";
 import kenpachi from "../assets/kenpachi.png";
 import shunsui from "../assets/shunsui.png";
+
+const characters = [
+  { src: aizen, alt: "Shinigami #1", blob: "rounded-[58%_42%_65%_35%/45%_55%_45%_55%]", delay: "0s" },
+  { src: kenpachi, alt: "Shinigami #2", blob: "rounded-[45%_55%_50%_50%/60%_40%_60%_40%]", delay: "0.5s" },
+  { src: yama, alt: "Shinigami #3", blob: "rounded-[70%_30%_50%_50%/50%_50%_50%_50%]", delay: "1s" },
+  { src: shunsui, alt: "Shinigami #4", blob: "rounded-[40%_60%_55%_45%/65%_35%_65%_35%]", delay: "1.5s" },
+];
 ---
 
-<section class="showcase">
-  <!-- Floating characters with irregular blob masks -->
-  <div class="characters">
-    <div class="blob blob-1">
-      <Image src={aizen}     alt="Shinigami #1" loading="eager" />
-    </div>
-    <div class="blob blob-2">
-      <Image src={kenpachi}  alt="Shinigami #2" loading="eager" />
-    </div>
-    <div class="blob blob-3">
-      <Image src={yama}      alt="Shinigami #3" loading="eager" />
-    </div>
-    <div class="blob blob-4">
-      <Image src={shunsui}   alt="Shinigami #4" loading="eager" />
-    </div>
+<section class="relative flex min-h-screen w-full flex-col justify-between overflow-hidden bg-gradient-to-b from-[#0a171e] via-[#0f2027] to-[#112e3a]">
+  
+  <div class="pointer-events-none absolute left-1/2 top-[10%] h-[800px] w-full max-w-[1000px] -translate-x-1/2 rounded-full bg-[#7fecff]/10 blur-[120px]"></div>
+
+  <div class="relative z-10 flex flex-wrap justify-center gap-10 px-6 pt-24 [perspective:2000px] lg:pt-32">
+    {characters.map((char) => (
+      <div 
+        style={`animation-delay: ${char.delay}`}
+        class={`animate-float group relative h-[380px] w-[280px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)] transition-all duration-700 ease-out hover:-translate-y-8 hover:rotate-y-12 hover:shadow-[0_40px_100px_rgba(127,236,255,0.3)] md:h-[420px] md:w-[320px] ${char.blob} border border-white/5`}
+      >
+        <div class="absolute inset-0 z-20 bg-gradient-to-t from-[#0f2027]/80 via-transparent to-white/10 opacity-60 transition-opacity group-hover:opacity-30"></div>
+        
+        <Image 
+          src={char.src} 
+          alt={char.alt} 
+          class="h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+          loading="eager"
+        />
+      </div>
+    ))}
   </div>
 
-  <!-- Title + jagged mountain silhouette -->
-  <div class="title-wrapper">
-    <h1>BORED SHINIGAMIZ</h1>
-    <svg class="mountains" viewBox="0 0 1920 300" preserveAspectRatio="none">
-      <path d="M0,300 L0,150 L150,200 L300,100 L450,250 L600,50 L750,180 L900,120 L1050,220 L1200,80 L1350,200 L1500,100 L1650,250 L1800,130 L1920,180 L1920,300 Z" fill="#0f2027"/>
-    </svg>
+  <div class="relative mt-auto">
+    <div class="relative z-20 px-4 text-center">
+      <h1 class="bg-gradient-to-r from-[#e0f2fe] via-[#7fecff] to-[#33d4ff] bg-clip-text text-[clamp(3.5rem,14vw,12rem)] font-black leading-none tracking-tighter text-transparent drop-shadow-[0_20px_40px_rgba(127,236,255,0.4)]">
+        BORED SHINIGAMIZ
+      </h1>
+    </div>
+
+    <div class="relative -mt-16 h-48 w-full md:-mt-32 md:h-64 lg:-mt-48 lg:h-[300px]">
+      <svg viewBox="0 0 1920 300" preserveAspectRatio="none" class="h-full w-full drop-shadow-[0_-10px_20px_rgba(0,0,0,0.8)]">
+        <path 
+          d="M0,300 L0,150 L150,200 L300,100 L450,250 L600,50 L750,180 L900,120 L1050,220 L1200,80 L1350,200 L1500,100 L1650,250 L1800,130 L1920,180 L1920,300 Z" 
+          fill="#060d11"
+        />
+      </svg>
+    </div>
   </div>
 </section>
 
 <style>
-  .showcase {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    background: linear-gradient(to bottom, #0a171e 0%, #0f2027 50%, #112e3a 100%);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
   }
-
-  /* Floating characters */
-  .characters {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    padding-top: 100px;
-    flex-wrap: wrap;
-    perspective: 2000px;
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
-
-  .blob {
-    width: 320px;
-    height: 420px;
-    overflow: hidden;
-    border-radius: 62% 38% 55% 45% / 50% 50% 50% 50%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-    transition: all 0.6s ease;
-    position: relative;
-  }
-
-  /* Unique blob shapes */
-  .blob-1 { border-radius: 58% 42% 65% 35% / 45% 55% 45% 55%; }
-  .blob-2 { border-radius: 45% 55% 50% 50% / 60% 40% 60% 40%; }
-  .blob-3 { border-radius: 70% 30% 50% 50% / 50% 50% 50% 50%; }
-  .blob-4 { border-radius: 40% 60% 55% 45% / 65% 35% 65% 35%; }
-
-  .blob:hover {
-    transform: translateY(-30px) rotateY(10deg);
-    box-shadow: 0 40px 100px rgba(127, 236, 255, 0.3);
-  }
-
-  .blob img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-  }
-
-  .blob:hover img {
-    transform: scale(1.1);
-  }
-
-  /* Title + mountain silhouette */
-  .title-wrapper {
-    position: relative;
-    text-align: center;
-    margin-bottom: -10px;
-  }
-
-  h1 {
-    font-size: clamp(5rem, 15vw, 12rem);
-    font-weight: 900;
-    letter-spacing: 8px;
-    background: linear-gradient(90deg, #e0f2fe, #7fecff, #33d4ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 20px 40px rgba(127, 236, 255, 0.4);
-    position: relative;
-    z-index: 2;
-  }
-
-  .mountains {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 300px;
-    z-index: 1;
-  }
-
-  .mountains path {
-    fill: #0f2027;
-    filter: drop-shadow(0 -10px 20px rgba(0, 0, 0, 0.8));
-  }
-
-  /* Subtle glow under characters */
-  .showcase::before {
-    content: "";
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    width: 1000px;
-    height: 800px;
-    background: radial-gradient(circle, rgba(127, 236, 255, 0.15), transparent 70%);
-    transform: translateX(-50%);
-    filter: blur(120px);
-    z-index: 0;
+  .rotate-y-12 {
+    transform: rotateY(12deg);
   }
 </style>

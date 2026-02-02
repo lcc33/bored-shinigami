@@ -1,0 +1,109 @@
+---
+// src/components/Roadmap.astro
+const roadmap = [
+  {
+    phase: "First Part",
+    percentage: "20%",
+    title: "The Awakening",
+    description: "The main goal is to give a new opportunity to our Bored Shinigamiz members. We will ensure our investment and first drop are successful, constantly improving to provide the best designs possible.",
+    position: "left",
+  },
+  {
+    phase: "Second Part",
+    percentage: "40%",
+    title: "Exclusive Merch & Events",
+    description: "Launch of exclusive Bored Shinigamiz apparel and community-only events. We are committed to building a long-term brand that rewards its holders with real-world value.",
+    position: "right",
+  },
+  {
+    phase: "Third Part",
+    percentage: "60%",
+    title: "Funding Time & Whitelist",
+    description: "We are committed to supporting and investing in the best projects in the space. Holding a Shinigami will grant automatic whitelist access to our future ecosystem expansions.",
+    position: "left",
+  },
+  {
+    phase: "Fourth Part",
+    percentage: "80%",
+    title: "Soul Society Metaverse",
+    description: "The Bored Shinigamiz community will have exclusive access to our custom-built territory in the Metaverse, featuring social hubs and interactive P2E experiences.",
+    position: "right",
+  },
+  {
+    phase: "Fifth Part",
+    percentage: "100%",
+    title: "Shinigamiz Over The World",
+    description: "Global marketing campaigns, partnerships with major anime studios, and massive real-world activations in the world's biggest cities to solidify our dominance.",
+    position: "left",
+  },
+];
+---
+
+<section class="relative bg-[#0a171e] py-24 text-white overflow-hidden">
+  <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+     <div class="absolute top-1/4 -left-20 w-96 h-96 bg-[#7fecff]/5 blur-[120px] rounded-full"></div>
+     <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-500/5 blur-[120px] rounded-full"></div>
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center mb-20 lg:mb-32">
+      <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter bg-gradient-to-r from-white to-[#7fecff] bg-clip-text text-transparent mb-6">
+        Our Road Map
+      </h2>
+      <p class="max-w-2xl mx-auto text-sky-200/70 text-lg">
+        When you buy a Bored Shinigamiz, you're not just buying an NFT—you're joining a journey of constant evolution and utility.
+      </p>
+    </div>
+
+    <div class="relative max-w-5xl mx-auto">
+      
+      <div class="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-gradient-to-b from-[#7fecff]/50 via-[#7fecff]/20 to-transparent hidden md:block"></div>
+
+      <div class="space-y-12 md:space-y-0">
+        {roadmap.map((item, index) => (
+          <div class={`relative flex items-center justify-center md:justify-between w-full ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+            
+            <div class="w-full md:w-[42%] text-center md:text-left">
+              <div class="p-6 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm hover:border-[#7fecff]/30 transition-colors group">
+                <span class="text-[#7fecff] font-bold tracking-widest uppercase text-sm">{item.phase}</span>
+                <h3 class="text-2xl font-black mt-2 mb-4 group-hover:text-[#7fecff] transition-colors uppercase italic">{item.title}</h3>
+                <p class="text-sky-100/60 leading-relaxed text-sm lg:text-base">
+                  {item.description}
+                </p>
+              </div>
+            </div>
+
+            <div class="absolute left-1/2 -translate-x-1/2 flex flex-col items-center justify-center z-20 hidden md:flex">
+                <div class="relative">
+                    <svg class="w-24 h-24 transform -rotate-90">
+                        <circle cx="48" cy="48" r="40" stroke="currentColor" stroke-width="4" fill="transparent" class="text-white/10" />
+                        <circle cx="48" cy="48" r="40" stroke="currentColor" stroke-width="6" fill="transparent" 
+                            stroke-dasharray="251.2" 
+                            stroke-dashoffset={251.2 - (251.2 * parseInt(item.percentage) / 100)} 
+                            class="text-[#7fecff] drop-shadow-[0_0_8px_#7fecff]"
+                        />
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="text-xl font-black text-white">{item.percentage}</span>
+                    </div>
+                </div>
+                {index !== roadmap.length - 1 && (
+                    <div class={`h-24 w-12 border-dotted border-[#7fecff]/40 
+                        ${index % 2 === 0 ? 'border-r-2 border-b-2 rounded-br-3xl -translate-x-6' : 'border-l-2 border-b-2 rounded-bl-3xl translate-x-6'}`}>
+                    </div>
+                )}
+            </div>
+
+            <div class="hidden md:block w-[42%]"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-24 text-center">
+        <h4 class="text-2xl md:text-4xl font-black text-[#7fecff] animate-pulse tracking-widest uppercase italic">
+            Part 2 to be announced
+        </h4>
+    </div>
+  </div>
+</section>

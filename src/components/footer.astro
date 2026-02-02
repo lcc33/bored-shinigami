@@ -1,0 +1,67 @@
+---
+// src/components/Footer.astro
+import { Icon } from "astro-icon/components";
+import logo from "../assets/BS.png";
+import { Image } from "astro:assets";
+---
+
+<footer class="relative bg-[#0a171e] pt-24 pb-12 overflow-hidden">
+  <div class="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
+    <svg class="relative block w-full h-[60px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="#0f2027"></path>
+    </svg>
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-12 border-b border-white/10 pb-16">
+      
+      <div class="text-center md:text-left space-y-4">
+        <h3 class="text-3xl font-black uppercase tracking-tighter text-white">Join Bored <br/> <span class="text-[#7fecff]">Shinigamiz</span></h3>
+        <p class="text-sky-100/60 text-sm max-w-xs mx-auto md:mx-0">Become a member of the strongest and fastest growing anime NFT community on Solana.</p>
+        <div class="flex flex-wrap justify-center md:justify-start gap-3 pt-2">
+          <a href="#" class="flex items-center gap-2 bg-[#5865F2] hover:bg-[#4752c4] text-white text-xs font-bold py-3 px-6 rounded-full transition-all shadow-[0_0_15px_rgba(88,101,242,0.4)]">
+            <Icon name="mdi:discord" class="w-4 h-4" /> DISCORD
+          </a>
+          <a href="#" class="flex items-center gap-2 bg-[#7fecff] hover:bg-white text-[#0f2027] text-xs font-bold py-3 px-6 rounded-full transition-all">
+             OPENSEA
+          </a>
+        </div>
+      </div>
+
+      <div class="flex justify-center">
+        <div class="relative group">
+          <div class="absolute inset-0 bg-[#7fecff]/20 blur-3xl rounded-full scale-110 group-hover:bg-[#7fecff]/40 transition-colors"></div>
+          <div class="relative w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-[#7fecff] p-2 bg-[#0f2027] shadow-[0_0_30px_rgba(127,236,255,0.3)] overflow-hidden">
+            <Image src={logo} alt="Bored Shinigamiz Logo" class="w-full h-full object-contain rounded-full scale-110 transition-transform duration-500" />
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center md:text-right space-y-4">
+        <h3 class="text-3xl font-black uppercase tracking-tighter text-white">Buy Your <br/> <span class="text-[#7fecff]">Shinigamiz</span></h3>
+        <div class="pt-4">
+          <button class="inline-flex items-center gap-2 bg-gradient-to-r from-[#7fecff] to-[#00c3ff] text-[#0f2027] font-black py-4 px-10 rounded-full transition-all hover:shadow-[0_0_30px_rgba(127,236,255,0.6)] hover:-translate-y-1">
+             MINT IS LIVE
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col md:flex-row justify-between items-center gap-8">
+      <p class="text-sky-100/40 text-xs font-medium order-3 md:order-1">
+        &copy; {new Date().getFullYear()} BORED SHINIGAMIZ. DEVELOPED BY <span class="text-[#7fecff]">AIZEN</span>
+      </p>
+
+      <div class="flex items-center gap-6 order-1 md:order-2">
+        <a href="#" class="text-white/40 hover:text-[#7fecff] transition-colors"><Icon name="mdi:twitter" class="w-6 h-6" /></a>
+        <a href="#" class="text-white/40 hover:text-[#7fecff] transition-colors"><Icon name="mdi:discord" class="w-6 h-6" /></a>
+        <a href="#" class="text-white/40 hover:text-[#7fecff] transition-colors"><Icon name="mdi:instagram" class="w-6 h-6" /></a>
+      </div>
+
+      <div class="flex gap-6 text-xs font-bold tracking-widest text-white/40 order-2 md:order-3">
+        <a href="#" class="hover:text-white transition-colors">PRIVACY POLICY</a>
+        <a href="#" class="hover:text-white transition-colors">TERMS & CONDITION</a>
+      </div>
+    </div>
+  </div>
+</footer>

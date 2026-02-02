@@ -1,203 +1,68 @@
 ---
-// src/components/About.astro
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import aizen from "../assets/aizen.png";
 import { Icon } from "astro-icon/components";
 ---
 
-<style>
-  .about {
-    background: #0a171e;
-    padding: 140px 40px 180px;
-    color: white;
-    position: relative;
-    overflow: hidden;
-  }
+<section class="relative overflow-hidden bg-[#0a171e] px-6 py-24 text-white md:px-12 lg:py-40">
+  <div class="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7fecff]/10 blur-[120px]"></div>
+  <div class="pointer-events-none absolute -right-20 top-0 h-[400px] w-[400px] rounded-full bg-sky-500/5 blur-[100px]"></div>
 
-  /* Top intro text */
-  .intro {
-    text-align: center;
-    margin-bottom: 80px;
-  }
-
-  .intro h2 {
-    font-size: 1.1rem;
-    color: #7fecff;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 12px;
-  }
-
-  .intro p {
-    font-size: 1.25rem;
-    color: #b0e0ff;
-    max-width: 900px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
-
-  .view-btn {
-    margin-top: 30px;
-    padding: 12px 32px;
-    background: transparent;
-    border: 2px solid #7fecff;
-    color: #7fecff;
-    font-weight: bold;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    text-transform: uppercase;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
-  }
-
-  .view-btn:hover {
-    background: #7fecff;
-    color: #0f2027;
-    box-shadow: 0 0 30px rgba(127, 236, 255, 0.6);
-    transform: translateY(-3px);
-  }
-
-  /* Main content grid */
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .image-wrapper {
-    position: relative;
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-  }
-
-  .image-wrapper::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(127, 236, 255, 0.2), transparent 50%);
-    z-index: 1;
-  }
-
-  .image-wrapper img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.6s ease;
-  }
-
-  .image-wrapper:hover img {
-    transform: scale(1.05);
-  }
-
-  /* Text content */
-  .text-content h1 {
-    font-size: clamp(3.5rem, 8vw, 6rem);
-    font-weight: 900;
-    background: linear-gradient(90deg, #e0f2fe, #7fecff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin: 0 0 32px 0;
-    line-height: 0.9;
-  }
-
-  .text-content p {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: #b0e0ff;
-    margin-bottom: 24px;
-  }
-
-  .text-content p:last-of-type {
-    margin-bottom: 40px;
-  }
-
-  .discord-btn {
-    padding: 16px 40px;
-    background: linear-gradient(135deg, #7fecff, #00c3ff);
-    color: #0f2027;
-    font-weight: bold;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 0 0 30px rgba(127, 236, 255, 0.7);
-    transition: all 0.4s ease;
-  }
-
-  .discord-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 50px rgba(127, 236, 255, 0.9);
-  }
-
-  /* Subtle background glow */
-  .bg-glow {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(127, 236, 255, 0.15), transparent 70%);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    filter: blur(100px);
-    z-index: 0;
-  }
-</style>
-
-<section class="about">
-  <div class="bg-glow"></div>
-
-  <!-- Intro -->
-  <div class="intro">
-    <h2>Welcome to Bored Shinigamiz</h2>
-    <p>
-      Join this ultra-exclusive NFT project featuring not only authentic anime-inspired art,
-      but unmatched utility on Solana. It will be called <strong>Bored Shinigamiz</strong>.
-    </p>
-    <button class="view-btn">
-      View All Collection
-      <Icon name="mdi:grid" width="20" />
-    </button>
-  </div>
-
-  <!-- Main Grid -->
-  <div class="grid">
+  <div class="relative z-10 mx-auto max-w-[1400px]">
     
-    <div class="image-wrapper">
-      <Image src={aizen} alt="Bored Shinigamiz - Aizen" loading="eager" />
+    <div class="mb-20 text-center">
+      <h2 class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-[#7fecff] md:text-lg">
+        Welcome to Bored Shinigamiz
+      </h2>
+      <p class="mx-auto max-w-4xl text-lg leading-relaxed text-sky-100/80 md:text-xl">
+        Join this ultra-exclusive NFT project featuring not only authentic anime-inspired art,
+        but unmatched utility on Solana. It will be called <span class="font-bold text-white text-shadow-glow">Bored Shinigamiz</span>.
+      </p>
+      
+      <button class="group mt-10 inline-flex items-center gap-3 rounded-full border-2 border-[#7fecff] px-8 py-3 text-sm font-bold uppercase tracking-widest text-[#7fecff] transition-all duration-400 hover:bg-[#7fecff] hover:text-[#0f2027] hover:shadow-[0_0_30px_rgba(127,236,255,0.6)] hover:-translate-y-1">
+        View All Collection
+        <Icon name="mdi:grid" class="w-5 transition-transform group-hover:rotate-12" />
+      </button>
     </div>
 
-    <!-- Right: Text + Button -->
-    <div class="text-content">
-      <h1>WHAT IS BORED SHINIGAMIZ?</h1>
-      <p>
-        Bored Shinigamiz is the first collection of 11,111 unique 3D anime-inspired NFTs
-        living on the Solana blockchain. Each Shinigami is hand-crafted with over 250+ traits.
-        We want to build the strongest community and project around anime NFTs.
-      </p>
-      <p>
-        The main goal is to give a new opportunity to anime fans worldwide. We will make sure
-        our investment and second drop are more successful than the first one, to achieve all
-        of our goals. We will also be constantly improving to give you the best designs and
-        value possible.
-      </p>
-      <button class="discord-btn">
-        <Icon name="mdi:discord" width="28" />
-        Join Our Discord
-      </button>
+    <div class="grid items-center gap-16 lg:grid-cols-2 lg:gap-24">
+      
+      <div class="group relative overflow-hidden rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] outline outline-1 outline-white/10">
+        <div class="absolute inset-0 z-10 bg-gradient-to-br from-[#7fecff]/20 to-transparent transition-opacity duration-500 group-hover:opacity-40"></div>
+        <Image 
+          src={aizen} 
+          alt="Bored Shinigamiz - Aizen" 
+          loading="eager"
+          class="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      </div>
+
+      <div class="flex flex-col space-y-8">
+        <h1 class="bg-gradient-to-r from-sky-50 to-[#7fecff] bg-clip-text text-5xl font-black leading-[0.9] text-transparent md:text-7xl lg:text-8xl">
+          WHAT IS <br class="hidden md:block" /> BORED SHINIGAMIZ?
+        </h1>
+        
+        <div class="space-y-6 text-lg leading-relaxed text-sky-100/70">
+          <p>
+            Bored Shinigamiz is the first collection of <span class="text-[#7fecff]">11,111 unique 3D anime-inspired NFTs</span> 
+            living on the Solana blockchain. Each Shinigami is hand-crafted with over 250+ traits.
+            We want to build the strongest community and project around anime NFTs.
+          </p>
+          <p>
+            The main goal is to give a new opportunity to anime fans worldwide. We will make sure
+            our investment and second drop are more successful than the first one, to achieve all
+            of our goals.
+          </p>
+        </div>
+
+        <div>
+          <button class="group inline-flex items-center gap-4 rounded-full bg-gradient-to-br from-[#7fecff] to-[#00c3ff] px-10 py-5 text-lg font-bold uppercase text-[#0f2027] shadow-[0_0_30px_rgba(127,236,255,0.5)] transition-all duration-400 hover:shadow-[0_0_50px_rgba(127,236,255,0.8)] hover:-translate-y-1.5 active:scale-95">
+            <Icon name="mdi:discord" class="w-7 transition-transform group-hover:scale-110" />
+            Join Our Discord
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>

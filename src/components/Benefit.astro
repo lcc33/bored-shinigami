@@ -1,265 +1,144 @@
 ---
-// src/components/Benefits.astro
-import Image from "astro/components/Image.astro";
-
-import cyborg from "../assets/cybord.png";
+import { Image } from "astro:assets";
+import cyborg from "../assets/aura.png"; // Fixed typo from 'cybord'
+import { Icon } from "astro-icon/components";
 ---
 
-<section class="benefits">
-  <!-- Background mountain silhouette (same as before) -->
-  <svg class="mountains" viewBox="0 0 1920 400" preserveAspectRatio="none">
-    <path
-      d="M0,400 L0,200 L180,280 L360,150 L540,320 L720,100 L900,250 L1080,180 L1260,300 L1440,120 L1620,260 L1800,160 L1920,280 L1920,400 Z"
-      fill="#0f2027"></path>
-  </svg>
+const
 
-  <!-- Central hero image -->
-  <div class="hero-image">
-    <Image src={cyborg} alt="Bored Shinigamiz Hero" loading="eager" />
+<section
+  class="relative min-h-screen overflow-hidden bg-gradient-to-b from-[#0a171e] via-[#0f2027] to-[#112e3a] px-6 py-20 lg:py-32"
+>
+  <div
+    class="absolute bottom-0 left-0 w-full z-10 pointer-events-none opacity-50"
+  >
+    <svg
+      viewBox="0 0 1920 400"
+      preserveAspectRatio="none"
+      class="w-full h-[300px] lg:h-[400px]"
+    >
+      <path
+        d="M0,400 L0,200 L180,280 L360,150 L540,320 L720,100 L900,250 L1080,180 L1260,300 L1440,120 L1620,260 L1800,160 L1920,280 L1920,400 Z"
+        fill="#060d11"></path>
+    </svg>
   </div>
 
-  <div class="container">
-    <!-- Title -->
-    <header class="section-header">
-      <h1>BENEFITS & UTILITIES</h1>
-      <p>
+  <div class="relative z-30 mx-auto max-w-[1400px]">
+    <header class="mb-16 text-center lg:mb-32">
+      <h1
+        class="mb-6 bg-gradient-to-r from-sky-50 to-[#7fecff] bg-clip-text text-5xl font-black uppercase tracking-tight text-transparent md:text-7xl lg:text-8xl"
+      >
+        Benefits & Utilities
+      </h1>
+      <p
+        class="mx-auto max-w-3xl text-lg leading-relaxed text-sky-200/80 md:text-xl"
+      >
         When you buy a Bored Shinigamiz, you're not simply buying a simple NFT,
         you're getting access to a community where benefits and utilities will
         increase with the time.
       </p>
     </header>
 
-    <!-- Benefit Items with dotted lines -->
-    <div class="benefits-grid">
-      <!-- Top Left -->
-      <div class="benefit top-left">
-        <div class="icon">
-          <div class="icon-bg"></div>
-          <span class="label">NFT</span>
+    <div
+      class="relative grid grid-cols-1 items-center gap-12 lg:grid-cols-3 lg:gap-0"
+    >
+      <div class="z-40 flex flex-col gap-12 lg:gap-32">
+        <div class="relative group">
+          <div class="flex items-start gap-4 lg:flex-col">
+            <div
+              class="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-[#7fecff] bg-[#7fecff]/20 shadow-[0_0_15px_rgba(127,236,255,0.4)] transition-transform group-hover:scale-110"
+            >
+              <span class="text-xs font-bold text-[#7fecff]">NFT</span>
+            </div>
+            <div class="space-y-3">
+              <h3
+                class="text-xl font-black text-[#7fecff] uppercase tracking-wide"
+              >
+                Increase the value of your NFT
+              </h3>
+              <p class="text-sky-100/70 leading-relaxed lg:max-w-xs">
+                If you are lucky and mint one of our rare BORED SHINIGAMIZ you
+                can 2x, 5x, 10x even x20 the value of your investment.
+              </p>
+            </div>
+          </div>
+          <div
+            class="hidden lg:block absolute -right-12 top-8 w-24 border-t-2 border-dotted border-[#7fecff]/40 after:content-[''] after:absolute after:-right-2 after:-top-[5px] after:h-2 after:w-2 after:rounded-full after:bg-yellow-400 after:shadow-[0_0_10px_#facc15]"
+          >
+          </div>
         </div>
-        <h3>INCREASE THE VALUE OF YOUR NFT</h3>
-        <p>
-          If you are lucky and mint one of our rare BORED SHINIGAMIZ you can 5x,
-          10x even x20 (maybe more) the value of your investment within a few
-          days of holding it.
-        </p>
+
+        <div class="relative group lg:translate-x-12">
+          <div class="flex items-start gap-4 lg:flex-col">
+            <div
+              class="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-[#7fecff] bg-gradient-to-br from-[#7fecff] to-cyan-500 shadow-[0_0_20px_rgba(127,236,255,0.6)] transition-transform group-hover:scale-110"
+            >
+              <span class="text-xs font-bold text-[#0f2027]">VIP</span>
+            </div>
+            <div class="space-y-3">
+              <h3
+                class="text-xl font-black text-[#7fecff] uppercase tracking-wide"
+              >
+                Access to VIP Privileges
+              </h3>
+              <p class="text-sky-100/70 leading-relaxed lg:max-w-xs">
+                By holding a BSG, we want to reward you with privileges that
+                will give you access to many benefits in the NFT space.
+              </p>
+            </div>
+          </div>
+          <div
+            class="hidden lg:block absolute -right-12 top-8 w-16 border-t-2 border-dotted border-[#7fecff]/40 after:content-[''] after:absolute after:-right-2 after:-top-[5px] after:h-2 after:w-2 after:rounded-full after:bg-yellow-400 after:shadow-[0_0_10px_#facc15]"
+          >
+          </div>
+        </div>
       </div>
 
-      <!-- Top Right -->
-      <div class="benefit top-right">
-        <div class="icon">
-          <div class="icon-bg"></div>
-          <span class="label">BBB</span>
+      <div
+        class="relative z-20 hidden justify-center sm:hidden md:hidden lg:flex"
+      >
+        <div class="relative max-w-[400px] lg:max-w-none">
+          <div
+            class="absolute inset-0 bg-[#7fecff]/10 blur-[80px] rounded-full scale-75"
+          >
+          </div>
+          <Image
+            src={cyborg}
+            alt="Bored Shinigamiz Hero"
+            class="relative z-10 w-full h-auto drop-shadow-[0_30px_50px_rgba(0,0,0,0.8)]"
+          />
         </div>
-        <h3>SHINIGAMIZ WILL TAKEOVER VALUE OF YOUR NFT</h3>
-        <p>
-          The quality of our design, our strong community, and our big campaign
-          of marketing will bring a lot of demand and eyes on the project.
-        </p>
       </div>
 
-      <!-- Bottom Left -->
-      <div class="benefit bottom-left">
-        <div class="icon vip">
-          <div class="icon-bg"></div>
-          <span class="label">VIP</span>
+      <div class="z-40 flex flex-col gap-12 lg:items-end">
+        <div class="relative group lg:-translate-y-24">
+          <div
+            class="hidden lg:block absolute -left-20 top-8 w-20 border-t-2 border-dotted border-[#7fecff]/40 before:content-[''] before:absolute before:-left-2 before:-top-[5px] before:h-2 before:w-2 before:rounded-full before:bg-yellow-400 before:shadow-[0_0_10px_#facc15]"
+          >
+          </div>
+
+          <div
+            class="flex items-start gap-4 lg:flex-col lg:items-end lg:text-right"
+          >
+            <div
+              class="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-[#7fecff] bg-[#7fecff]/20 shadow-[0_0_15px_rgba(127,236,255,0.4)] transition-transform group-hover:scale-110"
+            >
+              <span class="text-xs font-bold text-[#7fecff]">BSG</span>
+            </div>
+            <div class="space-y-3">
+              <h3
+                class="text-xl font-black text-[#7fecff] uppercase tracking-wide"
+              >
+                BSG Will Takeover Value
+              </h3>
+              <p class="text-sky-100/70 leading-relaxed lg:max-w-xs">
+                The quality of our design, our strong community, and our big
+                marketing campaigns will bring demand and eyes.
+              </p>
+            </div>
+          </div>
         </div>
-        <h3>ACCESS TO VIP PRIVILEGES</h3>
-        <p>
-          Same as Bored Bunny, Bored Shinigamiz will have many benefits for
-          future drop and collaborations we make. By holding a BBB, we want to
-          reward you with privileges that will give you access to many benefits
-          in the NFT space. Bored Bunny will keep growing with new projects that
-          we plan to release.
-        </p>
       </div>
     </div>
   </div>
 </section>
-
-<style>
-  .benefits {
-    position: relative;
-    min-height: 120vh;
-    background: linear-gradient(
-      to bottom,
-      #0a171e 0%,
-      #0f2027 50%,
-      #112e3a 100%
-    );
-    color: white;
-    overflow: hidden;
-    padding: 120px 40px;
-  }
-
-  .mountains {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 400px;
-    z-index: 1;
-  }
-
-  .hero-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 720px;
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  .hero-image img {
-    width: 100%;
-    height: auto;
-    filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.9));
-  }
-
-  .container {
-    position: relative;
-    z-index: 3;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 100px;
-  }
-
-  .section-header h1 {
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 900;
-    background: linear-gradient(90deg, #e0f2fe, #7fecff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin: 0 0 20px;
-  }
-
-  .section-header p {
-    font-size: 1.3rem;
-    color: #b0e0ff;
-    max-width: 900px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
-
-  .benefits-grid {
-    position: relative;
-  }
-
-  .benefit {
-    position: absolute;
-    max-width: 420px;
-    background: rgba(15, 32, 39, 0.6);
-    backdrop-filter: blur(10px);
-    padding: 28px;
-    border-radius: 20px;
-    border: 1px solid rgba(127, 236, 255, 0.2);
-  }
-
-  .benefit h3 {
-    font-size: 1.4rem;
-    margin: 16px 0;
-    color: #7fecff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .benefit p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #b0e0ff;
-  }
-
-  .icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: rgba(127, 236, 255, 0.15);
-    border: 3px solid #7fecff;
-    display: grid;
-    place-items: center;
-    position: relative;
-    margin-bottom: 20px;
-  }
-
-  .icon-bg {
-    position: absolute;
-    inset: 8px;
-    background: radial-gradient(circle, #7fecff, transparent);
-    border-radius: 50%;
-    opacity: 0.3;
-  }
-
-  .label {
-    font-weight: bold;
-    font-size: 1.1rem;
-    color: #0f2027;
-    text-shadow: 0 0 10px #7fecff;
-  }
-
-  .vip .icon {
-    background: linear-gradient(135deg, #7fecff, #00c3ff);
-  }
-
-  /* Position each benefit + dotted lines */
-  .top-left {
-    top: 10%;
-    left: 5%;
-  }
-  .top-right {
-    top: 8%;
-    right: 5%;
-  }
-  .bottom-left {
-    bottom: 15%;
-    left: 8%;
-  }
-
-  /* Dotted connecting lines */
-  .benefit::before {
-    content: "";
-    position: absolute;
-    border: 2px dotted #7fecff;
-    opacity: 0.4;
-  }
-
-  .top-left::before {
-    top: 60px;
-    right: -180px;
-    width: 200px;
-    border-left: none;
-    border-top: none;
-  }
-  .top-right::before {
-    top: 60px;
-    left: -180px;
-    width: 200px;
-    border-right: none;
-    border-top: none;
-  }
-  .bottom-left::before {
-    top: -80px;
-    right: -120px;
-    height: 160px;
-    border-left: none;
-    border-bottom: none;
-  }
-
-  @media (max-width: 1200px) {
-    .benefit {
-      position: static;
-      max-width: 100%;
-      margin: 40px auto;
-    }
-    .benefit::before {
-      display: none;
-    }
-    .hero-image {
-      width: 500px;
-    }
-  }
-</style>

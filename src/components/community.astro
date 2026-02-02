@@ -1,0 +1,77 @@
+---
+// src/components/Community.astro
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+// Replace these with your actual image imports
+import mainChar from "../assets/aizen.png"; 
+import miniChar1 from "../assets/yama.png";
+import miniChar2 from "../assets/kenpachi.png";
+---
+
+<section class="relative bg-[#0a171e] py-24 overflow-hidden">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-[#7fecff]/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+      
+      <div class="relative flex justify-center items-center">
+        <div class="relative w-[300px] h-[350px] md:w-[400px] md:h-[450px] overflow-hidden rounded-[40px] border border-white/10 shadow-2xl z-20">
+            <Image 
+                src={mainChar} 
+                alt="Community Leader" 
+                class="w-full h-full object-cover"
+            />
+        </div>
+
+        <div class="absolute -top-10 -left-10 md:-left-20 w-32 h-32 md:w-44 md:h-44 overflow-hidden rounded-[30%_70%_70%_30%/30%_30%_70%_70%] border-4 border-[#7fecff] bg-red-600 shadow-[0_0_20px_rgba(127,236,255,0.4)] z-30 animate-float" style="animation-delay: 0s;">
+            <Image src={miniChar1} alt="Shinigami" class="w-full h-full object-cover" />
+        </div>
+
+        <div class="absolute -bottom-10 -right-10 md:-right-16 w-32 h-32 md:w-48 md:h-48 overflow-hidden rounded-[70%_30%_30%_70%/60%_40%_60%_40%] border-4 border-[#ff0055] bg-pink-500 shadow-xl z-30 animate-float" style="animation-delay: 1.5s;">
+             <Image src={miniChar2} alt="Shinigami" class="w-full h-full object-cover" />
+        </div>
+      </div>
+
+      <div class="text-center lg:text-left space-y-8">
+        <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white leading-none">
+          Join the <br /> <span class="text-[#7fecff]">Community</span> Now
+        </h2>
+        
+        <div class="space-y-6 text-sky-100/70 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+            <p>
+                Bored Shinigamiz is the second collection of unique 3D anime-inspired NFTs 
+                uniting on the Solana Blockchain. Each Shinigami is a masterpiece of design, 
+                blending tradition with a futuristic edge.
+            </p>
+            <p>
+                The main goal is to give a new opportunity to our Bored Shinigamiz members. We will 
+                ensure our project's success through constant innovation and strong community support.
+            </p>
+        </div>
+
+        <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+            <a href="#" class="flex items-center gap-3 bg-[#5865F2] hover:bg-[#4752c4] text-white font-bold py-4 px-8 rounded-full transition-all shadow-lg hover:-translate-y-1">
+                <Icon name="mdi:discord" class="w-6 h-6" />
+                JOIN OUR DISCORD
+            </a>
+            <a href="#" class="flex items-center gap-3 bg-transparent border-2 border-white/20 hover:border-[#7fecff] text-white hover:text-[#7fecff] font-bold py-4 px-8 rounded-full transition-all hover:-translate-y-1">
+                <Icon name="mdi:twitter" class="w-6 h-6" />
+                FOLLOW US
+            </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+  }
+  .animate-float {
+    animation: float 5s ease-in-out infinite;
+  }
+</style>

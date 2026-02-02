@@ -1,169 +1,87 @@
 ---
 import Navbar from "./ui/Navbar.astro";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import aizen from "../assets/aizen.png";
 import yama from "../assets/yama.png";
 import kenpachi from "../assets/kenpachi.png";
 import shunsui from "../assets/shunsui.png";
 import old from "../assets/old.png";
 
-import { Instagram, Twitter } from "@lucide/astro";
-const discord  ="https://img.icons8.com/?size=100&id=61604&format=png&color=000000";
+import { Instagram, Twitter } from "lucide-astro";
+const discord = "https://img.icons8.com/?size=100&id=61604&format=png&color=7fecff";
 ---
 
-<style>
-  .hero {
-    min-height: 100vh;
-    background: linear-gradient(
-      to bottom,
-      #0f2027 0%,
-      #112e3a 40%,
-      #0c1a22 100%
-    );
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .top-socials {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    display: flex;
-    gap: 16px;
-    z-index: 20;
-  }
-
-  .top-socials a {
-    width: 44px;
-    height: 44px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
-  }
-
-  .top-socials a:hover {
-    background: #7fecff;
-    transform: translateY(-4px);
-    box-shadow: 0 0 20px rgba(127, 236, 255, 0.6);
-  }
-
-  .content {
-    text-align: center;
-    margin-top: 120px;
-    z-index: 10;
-  }
-
-  h1 {
-    font-size: clamp(1rem, 10vw, 9rem);
-    font-weight: 900;
-    background: linear-gradient(90deg, #e0f2fe, #7fecff, #33d4ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: 4px;
-    margin: 0;
-    text-shadow: 0 0 40px rgba(127, 236, 255, 0.4);
-  }
-
-  .subtitle {
-    font-size: 1.4rem;
-    max-width: 720px;
-    margin: 10px auto 40px;
-    color: #b0e0ff;
-    line-height: 1.6;
-  }
-
-  .mint-btn {
-    padding: 16px 48px;
-    background: linear-gradient(135deg, #7fecff, #00c3ff);
-    color: #0f2027;
-    font-weight: bold;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 0 30px rgba(127, 236, 255, 0.7);
-    transition: all 0.3s ease;
-  }
-
-  .mint-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 50px rgba(127, 236, 255, 0.9);
-    background: transparent;
-    color: white;
-  }
-
-  .characters {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 20px;
-    padding: 0 40px;
-    z-index: 5;
-  }
-
-  .characters img {
-    height: 420px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8));
-    transition: transform 0.4s ease;
-  }
-
-  .characters img:hover {
-    transform: translateY(-20px) scale(1.05);
-  }
-
-  .glow-ground {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 300px;
-    background: linear-gradient(to top, rgba(127, 236, 255, 0.25), transparent);
-    filter: blur(80px);
-    z-index: 1;
-  }import Navbar from "./ui/Navbar.astro";
-</style>
-
-<section class="hero">
-  <div class="top-socials">
-    <a href="#" aria-label="Twitter"><Twitter width="38" /></a>
-    <a href="#" aria-label="Menu">
-      <img width="38" 
-      src={discord}/></a>
-    <a href="#" aria-label="Instagram"
-      ><Instagram width="38" /></a
-    >
+<section class="relative flex min-h-screen flex-col items-center overflow-hidden bg-gradient-to-b from-[#0f2027] via-[#112e3a] to-[#0c1a22] text-white">
+  
+  <div class="absolute right-6 top-6 z-50 hidden md:flex flex-col gap-4 lg:right-10 lg:top-10">
+    {[
+      { icon: Twitter, href: "#", label: "Twitter" },
+      { img: discord, href: "#", label: "Discord" },
+      { icon: Instagram, href: "#", label: "Instagram" }
+    ].map((social) => (
+      <a 
+        href={social.href} 
+        aria-label={social.label}
+        class="group grid h-12 w-12 place-items-center rounded-full bg-white/10 backdrop-blur-md border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7fecff] hover:shadow-[0_0_20px_rgba(127,236,255,0.6)]"
+      >
+        {social.icon ? (
+          <social.icon class="w-6 transition-colors group-hover:text-[#0f2027]" />
+        ) : (
+          <img src={social.img} alt="" class="w-6 transition-all group-hover:invert group-hover:brightness-0" />
+        )}
+      </a>
+    ))}
   </div>
 
   <Navbar />
 
-  <div class="content">
-    <h1>Bored Shinigamiz</h1>
-    <p class="subtitle">
-      Bored Shinigamiz is your ticket into the largest and fastest growing
-      anime-inspired NFT Project on Solana.
+  <div class="relative z-20 mt-20 px-6 text-center md:mt-32">
+    <h1 class="animate-fade-in bg-gradient-to-r from-[#e0f2fe] via-[#7fecff] to-[#33d4ff] bg-clip-text text-[clamp(2.5rem,12vw,9rem)] font-black uppercase leading-none tracking-tighter text-transparent drop-shadow-[0_0_30px_rgba(127,236,255,0.3)]">
+      Bored <br class="md:hidden" /> Shinigamiz
+    </h1>
+    
+    <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-sky-100/80 md:text-2xl">
+      Bored Shinigamiz is your ticket into the largest and fastest growing 
+      <span class="text-[#7fecff] font-semibold">anime-inspired NFT Project</span> on Solana.
     </p>
-    <button class="mint-btn">Mint is Live</button>
+
+    <div class="mt-10 flex flex-wrap justify-center gap-6">
+      <button class="group relative overflow-hidden rounded-full bg-gradient-to-br from-[#7fecff] to-[#00c3ff] px-10 py-5 text-xl font-black uppercase text-[#0f2027] shadow-[0_0_30px_rgba(127,236,255,0.6)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_50px_rgba(127,236,255,0.8)] active:scale-95">
+        <span class="relative z-10">Mint is Live</span>
+        <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-500 group-hover:translate-x-full"></div>
+      </button>
+    </div>
   </div>
 
-  <div class="characters">
-    <Image src={old} alt="Shinigami 1" loading="eager" />
-    <Image src={kenpachi} alt="Shinigami 2" loading="eager" />
-    <Image src={aizen} alt="Shinigami 3" loading="eager" />
-    <Image src={yama} alt="Shinigami 4" loading="eager" />
-    <Image src={shunsui} alt="Shinigami 5" loading="eager" />
+  <div class="relative bottom-0 z-10 mt-auto flex w-full items-end justify-center px-4 md:px-10">
+    <div class="flex w-full max-w-[1600px] items-end justify-center -space-x-12 md:-space-x-20 lg:-space-x-28">
+      {[old, kenpachi, aizen, yama, shunsui].map((char, index) => (
+        <div class={`transition-all duration-500 hover:z-50 hover:-translate-y-10 hover:scale-110 
+          ${index === 2 ? 'z-40 scale-110' : 'z-20 grayscale-[20%] hover:grayscale-0'} 
+          ${index === 0 || index === 4 ? 'hidden lg:block' : ''}
+          ${index === 1 || index === 3 ? 'hidden md:block' : ''}
+        `}>
+          <Image 
+            src={char} 
+            alt={`Shinigami ${index + 1}`} 
+            class="h-[300px] w-auto object-contain drop-shadow-[0_10px_50px_rgba(0,0,0,0.9)] md:h-[450px] lg:h-[550px]"
+            loading="eager"
+          />
+        </div>
+      ))}
+    </div>
   </div>
 
-  <div class="glow-ground"></div>
+  <div class="pointer-events-none absolute bottom-0 h-1/3 w-full bg-gradient-to-t from-[#7fecff]/20 to-transparent blur-[80px]"></div>
+  <div class="pointer-events-none absolute -bottom-20 h-40 w-full bg-[#0c1a22] shadow-[0_-50px_100px_rgba(12,26,34,1)]"></div>
 </section>
+
+<style>
+  .animate-fade-in {
+    animation: fadeIn 1.2s ease-out forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

@@ -1,20 +1,24 @@
 ---
 import logo from "../../assets/BS.png";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
+import { Instagram, Twitter } from "lucide-astro";
+const discord = "https://img.icons8.com/?size=100&id=61604&format=png&color=7fecff";
 ---
 
 <style>
+  /* Navbar Container */
   nav {
     background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
-   padding: 2px 20px;
+    padding: 12px 20px;
     border-radius: 60px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     max-width: 1400px;
-    margin-top: 10px;
-    
+    margin: 10px auto;
+    position: relative;
   }
 
-  ul {
+  /* Desktop Navigation */
+  .nav-desktop {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -22,14 +26,13 @@ import Image from "astro/components/Image.astro";
     align-items: center;
     justify-content: center;
     gap: 40px;
-    flex-wrap: wrap;
   }
 
-  li {
+  .nav-desktop li {
     position: relative;
   }
 
-  a {
+  .nav-desktop a {
     color: #e0f2fe;
     text-decoration: none;
     font-weight: 600;
@@ -39,18 +42,18 @@ import Image from "astro/components/Image.astro";
     transition: all 0.3s ease;
   }
 
-  a:hover {
+  .nav-desktop a:hover {
     color: #7fecff;
     text-shadow: 0 0 10px rgba(127, 236, 255, 0.6);
   }
 
-  a.active {
+  .nav-desktop a.active {
     color: #7fecff;
     text-shadow: 0 0 15px rgba(127, 236, 255, 0.8);
   }
 
-  /* Underline effect on hover */
-  li::after {
+  /* Underline effect */
+  .nav-desktop li::after {
     content: "";
     position: absolute;
     width: 0;
@@ -62,10 +65,11 @@ import Image from "astro/components/Image.astro";
     transform: translateX(-50%);
   }
 
-  li:hover::after {
+  .nav-desktop li:hover::after {
     width: 100%;
   }
 
+  /* Logo */
   .logo {
     height: 90px;
     width: 90px;
@@ -79,6 +83,7 @@ import Image from "astro/components/Image.astro";
     transform: scale(1.1) rotate(5deg);
   }
 
+  /* Mint Button */
   .mint-btn {
     padding: 14px 32px;
     background: linear-gradient(135deg, #7fecff, #00c3ff);
@@ -99,35 +104,359 @@ import Image from "astro/components/Image.astro";
     background: linear-gradient(135deg, #a0f4ff, #33d1ff);
   }
 
-  .socials {
+  /* Mobile Menu */
+  .mobile-menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+  }
+
+  .hamburger {
+    width: 30px;
+    height: 3px;
+    background: #7fecff;
+    position: relative;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background: #7fecff;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger::before {
+    top: -10px;
+  }
+
+  .hamburger::after {
+    bottom: -10px;
+  }
+
+  /* Hamburger animation when open */
+  .mobile-menu-toggle.active .hamburger {
+    background: transparent;
+  }
+
+  .mobile-menu-toggle.active .hamburger::before {
+    transform: rotate(45deg);
+    top: 0;
+  }
+
+  .mobile-menu-toggle.active .hamburger::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+  }
+
+  /* Mobile Navigation Menu */
+  .nav-mobile {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    padding: 80px 30px 30px;
+    transition: right 0.4s ease;
+    overflow-y: auto;
+  }
+
+  .nav-mobile.active {
+    right: 0;
+  }
+
+  .nav-mobile ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    gap: 25px;
   }
 
-  .socials a {
-    color: #b0e0ff;
-    font-size: 1.4rem;
-    transition: all 0.3s;
+  .nav-mobile li {
+    width: 100%;
   }
 
-  .socials a:hover {
+  .nav-mobile a {
+    color: #e0f2fe;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    padding: 12px 0;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(127, 236, 255, 0.2);
+  }
+
+  .nav-mobile a:hover,
+  .nav-mobile a.active {
     color: #7fecff;
-    transform: scale(1.2);
+    text-shadow: 0 0 10px rgba(127, 236, 255, 0.6);
+    padding-left: 10px;
+  }
+
+  .nav-mobile .mint-btn {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  /* Mobile Social Icons */
+  .mobile-socials {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(127, 236, 255, 0.2);
+  }
+
+  .social-link {
+    display: grid;
+    place-items: center;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .social-link:hover {
+    background: #7fecff;
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(127, 236, 255, 0.6);
+  }
+
+  .social-link :global(svg) {
+    width: 24px;
+    height: 24px;
+    color: #e0f2fe;
+    transition: color 0.3s ease;
+  }
+
+  .social-link:hover :global(svg) {
+    color: #0f2027;
+  }
+
+  .social-link img {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease;
+  }
+
+  .social-link:hover img {
+    filter: invert(1) brightness(0);
+  }
+
+  /* Mobile Overlay */
+  .mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .mobile-overlay.active {
+    opacity: 1;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .nav-desktop {
+      gap: 20px;
+    }
+
+    .nav-desktop a {
+      font-size: 0.95rem;
+    }
+
+    .logo {
+      height: 70px;
+      width: 70px;
+    }
+
+    .mint-btn {
+      padding: 10px 24px;
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* Hide desktop nav, show mobile menu */
+    .nav-desktop {
+      display: none;
+    }
+
+    .mobile-menu-toggle,
+    .nav-mobile,
+    .mobile-overlay {
+      display: block;
+    }
+
+    nav {
+      padding: 12px 20px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    nav {
+      padding: 10px 15px;
+      border-radius: 40px;
+    }
+
+    .nav-mobile {
+      width: 85%;
+      padding: 70px 25px 25px;
+    }
+
+    .nav-mobile a {
+      font-size: 1.1rem;
+    }
+
+    .social-link {
+      height: 44px;
+      width: 44px;
+    }
+
+    .social-link :global(svg),
+    .social-link img {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  /* Prevent body scroll when menu is open */
+  body.menu-open {
+    overflow: hidden;
   }
 </style>
 
 <nav>
-  <ul>
+  <!-- Desktop Navigation -->
+  <ul class="nav-desktop">
     <li><a href="/">Home</a></li>
     <li><a href="/what-is-bored-bunny">What is Bored Bunny</a></li>
-    <li><a href="/benefits">Benefits & Utilities</a></li>
-
-    <Image class="logo" src={logo} alt="Bored Bunny Logo" />
-
-    <li><a href="/roadmap">Roadmap</a></li>
-    <li><a href="/community">Community</a></li>
+    
+    <li>
+      <a href="/">
+        <Image class="logo" src={logo} alt="Bored Bunny Logo" />
+      </a>
+    </li>
+  
     <li><a href="/faqs">FAQ's</a></li>
 
-    <button class="mint-btn">Mint is Live</button>
+    <li>
+      <button class="mint-btn">Mint is Live</button>
+    </li>
   </ul>
+
+  <!-- Mobile Menu Toggle (Hamburger) -->
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+    <div class="hamburger"></div>
+  </button>
 </nav>
+
+<!-- Mobile Overlay -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- Mobile Navigation Menu -->
+<div class="nav-mobile" id="mobileNav">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="#">What is Bored Bunny</a></li>
+    <li><a href="#">FAQ's</a></li>
+    <li>
+      <button class="mint-btn">Mint is Live</button>
+    </li>
+  </ul>
+
+  <!-- Social Media Icons (Mobile Only) -->
+  <div class="mobile-socials">
+    <a href="#" aria-label="Twitter" class="social-link">
+      <Twitter />
+    </a>
+    <a href="#" aria-label="Discord" class="social-link">
+      <Image src={discord} alt="Discord" width="24" height="24" />
+    </a>
+    <a href="#" aria-label="Instagram" class="social-link">
+      <Instagram />
+    </a>
+  </div>
+</div>
+
+<script>
+  // Mobile menu functionality
+  const menuToggle = document.getElementById('mobileMenuToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileOverlay = document.getElementById('mobileOverlay');
+  const body = document.body;
+
+  function toggleMenu() {
+    menuToggle?.classList.toggle('active');
+    mobileNav?.classList.toggle('active');
+    mobileOverlay?.classList.toggle('active');
+    body.classList.toggle('menu-open');
+  }
+
+  function closeMenu() {
+    menuToggle?.classList.remove('active');
+    mobileNav?.classList.remove('active');
+    mobileOverlay?.classList.remove('active');
+    body.classList.remove('menu-open');
+  }
+
+  // Toggle menu on hamburger click
+  menuToggle?.addEventListener('click', toggleMenu);
+
+  // Close menu on overlay click
+  mobileOverlay?.addEventListener('click', closeMenu);
+
+  // Close menu when clicking a link
+  const mobileLinks = document.querySelectorAll('.nav-mobile a');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileNav?.classList.contains('active')) {
+      closeMenu();
+    }
+  });
+
+  // Handle active link highlighting
+  const currentPath = window.location.pathname;
+  const allLinks = document.querySelectorAll('nav a');
+  allLinks.forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+      link.classList.add('active');
+    }
+  });
+</script>
